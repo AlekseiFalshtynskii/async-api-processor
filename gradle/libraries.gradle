@@ -1,0 +1,8 @@
+ext {
+    apacheCommonsLangVersion = '3.14.0'
+    hibernateTypesVersion = '2.9.9'
+    javaparserVersion = '3.25.7'
+    lombokVersion = '1.18.28'
+    springBootVersion = '2.7.18'
+    springdocVersion = '1.7.0'
+}

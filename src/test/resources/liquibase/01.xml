@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd"
+        logicalFilePath="path-independent">
+
+    <changeSet id="01" author="AlekseiF">
+        <comment>Создание журнала асинхронных запросов</comment>
+        <createTable tableName="async_request" remarks="Журнал асинхронных запросов">
+            <column name="id" type="bigint" autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" remarks="id запроса">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint" remarks="id пользователя">
+                <constraints nullable="false"/>
+            </column>
+            <column name="api" type="text" remarks="path запроса">
+                <constraints nullable="false"/>
+            </column>
+            <column name="params" type="jsonb" remarks="Параметры запроса"/>
+            <column name="create_datetime" type="datetime" remarks="Дата время создания записи запроса">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_datetime" type="datetime" remarks="Дата время начала запроса"/>
+            <column name="end_datetime" type="datetime" remarks="Дата время завершения запроса"/>
+            <column name="status" type="varchar(100)" remarks="HTTP статус"/>
+            <column name="response" type="jsonb" remarks="Json ответа"/>
+            <column name="file_name" type="varchar(500)" remarks="Наименование файла"/>
+            <column name="file_uuid" type="varchar(500)" remarks="UUID файла"/>
+            <column name="error" type="text" remarks="Лог ошибки"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

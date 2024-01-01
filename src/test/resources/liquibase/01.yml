@@ -1,0 +1,71 @@
+databaseChangeLog:
+  - logicalFilePath: path-independent
+  - changeSet:
+      id: 01
+      author: AlekseiF
+      comment: Создание журнала асинхронных запросов
+      changes:
+        - createTable:
+            tableName: async_request
+            remarks: Журнал асинхронных запросов
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  defaultOnNull: false
+                  generationType: BY DEFAULT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  remarks: id запроса
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                  remarks: id пользователя
+              - column:
+                  name: api
+                  type: text
+                  constraints:
+                    nullable: false
+                  remarks: path запроса
+              - column:
+                  name: params
+                  type: jsonb
+                  remarks: Параметры запроса
+              - column:
+                  name: create_datetime
+                  type: datetime
+                  constraints:
+                    nullable: false
+                  remarks: Дата время создания записи запроса
+              - column:
+                  name: start_datetime
+                  type: datetime
+                  remarks: Дата время начала запроса
+              - column:
+                  name: end_datetime
+                  type: datetime
+                  remarks: Дата время завершения запроса
+              - column:
+                  name: status
+                  type: varchar(100)
+                  remarks: HTTP статус
+              - column:
+                  name: response
+                  type: jsonb
+                  remarks: Json ответа
+              - column:
+                  name: file_name
+                  type: varchar(500)
+                  remarks: Наименование файла
+              - column:
+                  name: file_uuid
+                  type: varchar(500)
+                  remarks: UUID файла
+              - column:
+                  name: error
+                  type: text
+                  remarks: Лог ошибки
